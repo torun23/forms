@@ -1,0 +1,167 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px; /* Increased max-width for better spacing */
+    margin-bottom: 20px;
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+.form-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px; /* Increased max-width for better spacing */
+    overflow: hidden;
+    border-top: 8px solid #673ab7; /* Dark purple border */
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-element {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    padding: 20px;
+    width: 100%;
+    max-width: 800px; /* Increased max-width for better spacing */
+    margin: 20px auto;
+    transition: all 0.3s ease;
+}
+
+.form-element:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+    transform: translateY(-5px); /* Lifts the element a bit on hover */
+}
+
+.element-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.element-header h5 {
+    margin: 0;
+    font-size: 24px; /* Maintain consistent font size */
+}
+
+.option-container {
+    margin-top: 10px;
+}
+
+.delete-btn,.add-option-btn {
+    margin-left: 10px;
+    font-size: 18px; /* Larger font size for buttons */
+}
+
+.preview-button {
+    margin-left: 10px;
+    color: #6c757d;
+    font-size: 24px; /* Larger font size for the preview button */
+}
+
+/* New styles for preview section */
+.preview-container {
+    max-width: 800px; /* Limit width for preview section*/
+    margin-top: 20px;
+}
+
+.preview-element {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.preview-element.element-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.preview-element.option-container {
+    margin-top: 10px;
+}
+
+.preview-element.option-element {
+    margin-bottom: 10px;
+}
+
+.preview-element.short-answer-input,.preview-element.paragraph-textarea {
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    min-height: 1.5em;
+    width: 100%;
+    resize: none;
+    pointer-events: none;
+}
+
+.preview-element textarea {
+    min-height: 1.5em;
+    resize: none;
+    width: 100%;
+}
+
+.preview-element input[type="radio"],.preview-element input[type="checkbox"] {
+    pointer-events: none;
+}
+
+.preview-element input[type="radio"]:checked + label::before,.preview-element input[type="checkbox"]:checked + label::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #007bff;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.preview-element input[type="radio"]:checked + label,.preview-element input[type="checkbox"]:checked + label {
+    color: #007bff;
+}
+
+.preview-element select {
+    background-color: transparent;
+    border: none;
+}
+
+.preview-element select option[selected] {
+    background-color: #007bff;
+    color: white;
+}
+
+.preview-element.option-container {
+    margin-top: 10px;
+}
