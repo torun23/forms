@@ -1,198 +1,169 @@
-let elementCounter = 0;
+$(document).ready(function() {
+    let index = 1;
 
-function addElement(type) {
-    elementCounter++;
-    const formContainer = document.getElementById('form-container');
-
-    const newElement = document.createElement('div');
-    newElement.classList.add('form-element');
-    newElement.setAttribute('role', 'textbox');
-    newElement.style.fontFamily = "'docs-Roboto', Arial, sans-serif";
-    newElement.style.fontWeight = '400';
-    newElement.style.fontSize = '24pt';
-    newElement.style.lineHeight = '1.25';
-    newElement.style.letterSpacing = '0';
-    newElement.style.minHeight = '1.5em';
-
-    newElement.id = `element-${elementCounter}`;
-
-    let elementContent = `<div class="element-header">
-                            <h5>${type.charAt(0).toUpperCase() + type.slice(1)}</h5>`;
-    
-    if (type!== 'hort-answer' && type!== 'paragraph') {
-        elementContent += `<button class="btn btn-secondary add-option-btn" onclick="addOption(${elementCounter}, '${type}')">Add Option</button>`;
-    }
-    
-    elementContent += `<button class="btn btn-danger delete-btn" onclick="deleteElement(${elementCounter})">Delete</button>
-                        </div>`;
-
-    if (type === 'hort-answer') {
-        elementContent += `<input type="text" class="form-control short-answer-input" placeholder="Short Answer">`;
-    } else if (type === 'paragraph') {
-        elementContent += `<textarea class="form-control paragraph-textarea" rows="4" placeholder="Paragraph"></textarea>`;
-    } else if (type === 'ultiple-choice') {
-        elementContent += `<div class="option-container">
-                              <div class="form-group option-element">
-                                <input type="text" class="form-control" placeholder="Option 1" disabled>
-                                <button class="btn btn-danger btn-sm ml-2" onclick="deleteOption(this)">Delete</button>
-                              </div>
-                            </div>`;
-    } else if (type === 'checkbox') {
-        elementContent += `<div class="option-container">
-                              <div class="form-group option-element">
-                                <input type="text" class="form-control" placeholder="Option 1" disabled>
-                                <button class="btn btn-danger btn-sm ml-2" onclick="deleteOption(this)">Delete</button>
-                              </div>
-                            </div>`;
-    } else if (type === 'dropdown') {
-        elementContent += `<div class="option-container">
-                              <select class="form-control" disabled>
-                                <option value="">Select an option</option>
-                              </select>
-                            </div>`;
-    }
-
-    newElement.innerHTML = elementContent;
-    formContainer.appendChild(newElement);
-}
-
-function deleteElement(id) {
-    const element = document.getElementById(`element-${id}`);
-    element.remove();
-}
-
-function addOption(elementId, type) {
-    const optionContainer = document.querySelector(`#element-${elementId}.option-container`);
-
-    if (type === 'ultiple-choice') {
-        const optionCount = optionContainer.children.length + 1;
-        const newOption = document.createElement('div');
-        newOption.classList.add('form-group', 'option-element');
-        newOption.innerHTML = `<input type="text" class="form-control" placeholder="Option ${optionCount}" disabled>
-                               <button class="btn btn-danger btn-sm ml-2" onclick="deleteOption(this)">Delete</button>`;
-        optionContainer.appendChild(newOption);
-    } else if (type === 'checkbox') {
-        const optionCount = optionContainer.children.length + 1;
-        const newOption = document.createElement('div');
-        newOption.classList.add('form-group', 'option-element');
-        newOption.innerHTML = `<input type="text" class="form-control" placeholder="Option ${optionCount}" disabled>
-                               <button class="btn btn-danger btn-sm ml-2" onclick="deleteOption(this)">Delete</button>`;
-        optionContainer.appendChild(newOption);
-    } else if (type === 'dropdown') {
-        const optionCount = optionContainer.children.length + 1;
-        const newOption = document.createElement('option');
-        newOption.textContent = `Option ${optionCount}`;
-        newOption.disabled = true;
-        optionContainer.appendChild(newOption);
-    }
-}
-
-function deleteOption(option) {
-    option.parentElement.remove();
-}
-
-function previewForm() {
-    const formContainer = document.getElementById('form-container');
-    const formElements = formContainer.querySelectorAll('.form-element');
-
-    let previewHTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preview Form</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'docs-Roboto', Arial, sans-serif;
-            font-weight: 400;
-            font-size: 24pt;
-            line-height: 1.25;
-            letter-spacing: 0;
-            min-height: 1.5em;
-            background-color: rgb(240, 235, 248);
-            margin: 20px;
-        }
-        
-      .form-element {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-      .element-header {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-      .option-container {
-            margin-top: 10px;
-        }
-        
-      .option-element {
-            margin-bottom: 10px;
-        }
-        
-      .short-answer-input,.paragraph-textarea {
-            border: none;
-            background-color: transparent;
-            font-family: inherit;
-            font-size: inherit;
-            line-height: inherit;
-            letter-spacing: inherit;
-            min-height: 1.5em;
-            width: 100%;
-            resize: none;
-            pointer-events: none;
-        }
-    </style>
-</head>
-<body>`            
-formElements.forEach(element => {
-        const type = element.querySelector('.element-header h5').innerText.trim().toLowerCase();
-        let elementContent = `<div class="element-header"><h5>${type.charAt(0).toUpperCase() + type.slice(1)}</h5></div>`;
-        let content = '';
-
-        if (type === 'hort answer') {
-            content = element.querySelector('.short-answer-input').value;
-            elementContent += `<textarea class="form-control paragraph-textarea" rows="1" readonly>${content}</textarea>`;
-        } else if (type === 'paragraph') {
-            content = element.querySelector('.paragraph-textarea').value;
-            elementContent += `<textarea class="form-control paragraph-textarea" rows="4" readonly>${content}</textarea>`;
-        } else if (type === 'ultiple choice') {
-            const options = element.querySelectorAll('.option-container.option-element input[type="text"]');
-            content = Array.from(options).map(option => {
-                return `<div><input type="radio" name="option-${element.id}"> ${option.value}</div>`;
-            }).join('');
-            elementContent += `<div class="option-container">${content}</div>`;
-        } else if (type === 'checkbox') {
-            const options = element.querySelectorAll('.option-container.option-element input[type="text"]');
-            content = Array.from(options).map(option => {
-                return `<div><input type="checkbox"> ${option.value}</div>`;
-            }).join('');
-            elementContent += `<div class="option-container">${content}</div>`;
+    function addOption(type, container) {
+        let optionIndex = container.children().length + 1;
+        let optionHtml;
+        if (type === 'multiple-choice' || type === 'checkboxes') {
+            optionHtml = `
+                <div class="option">
+                    <input type="${type === 'multiple-choice' ? 'radio' : 'checkbox'}" disabled>
+                    <input type="text" class="form-control option-label" value="Option ${optionIndex}">
+                    <button class="btn btn-danger btn-sm delete-option-btn">Delete</button>
+                </div>
+            `;
         } else if (type === 'dropdown') {
-            const options = element.querySelectorAll('.option-container select option');
-            content = Array.from(options).map(option => {
-                return `<option>${option.textContent}</option>`;
-            }).join('');
-            elementContent += `<select class="form-control option-container">${content}</select>`;
+            optionHtml = `
+                <div class="option">
+                    <input type="text" class="form-control option-label" value="Option ${optionIndex}">
+                    <button class="btn btn-danger btn-sm delete-option-btn">Delete</button>
+                </div>
+            `;
         }
+        container.append(optionHtml);
+    }
 
-        previewHTML += `<div class="form-element">
-                            ${elementContent}
-                        </div>`;
+    function createFormSection() {
+        let newSection = `
+            <div class="form-section" data-index="${index}">
+                <div class="question-section">
+                    <input type="text" class="form-control question-label" placeholder="Untitled Question">
+                </div>
+                <div class="dropdown-section">
+                    <select class="custom-select">
+                        <option value="short-answer">Short Answer</option>
+                        <option value="paragraph">Paragraph</option>
+                        <option value="multiple-choice">Multiple Choice</option>
+                        <option value="checkboxes">Checkboxes</option>
+                        <option value="dropdown">Dropdown</option>
+                    </select>
+                    <button class="btn btn-danger delete-btn">Delete</button>
+                </div>
+                <div class="options-container"></div>
+            </div>
+        `;
+        $('#form-container').append(newSection);
+        index++;
+    }
+
+    $('#add-section-btn').on('click', function() {
+        createFormSection();
+        $('.form-section').removeClass('active');
+        $('.form-section').last().addClass('active');
+        $(this).appendTo('.container');
     });
 
-    previewHTML += `</body>
-</html>`;
+    $(document).on('change', '.custom-select', function() {
+        let type = $(this).val();
+        let container = $(this).closest('.form-section').find('.options-container');
+        container.empty(); // Clear existing options when dropdown changes
 
-    // Open preview in new window or tab
-    const previewWindow = window.open();
-    previewWindow.document.open();
-    previewWindow.document.write(previewHTML);
-    previewWindow.document.close();
-}
+        // Remove any existing "Add Option" button
+        $(this).closest('.form-section').find('.add-option-btn').remove();
+
+        if (type === 'short-answer') {
+            container.append('<input type="text" class="form-control" disabled placeholder="Short answer text">');
+        } else if (type === 'paragraph') {
+            container.append('<textarea class="form-control" disabled placeholder="Paragraph text"></textarea>');
+        } else {
+            addOption(type, container);
+            $(this).closest('.form-section').append('<button class="btn btn-secondary add-option-btn">Add Option</button>');
+        }
+    });
+
+    $(document).on('click', '.add-option-btn', function() {
+        let type = $(this).closest('.form-section').find('.custom-select').val();
+        let container = $(this).closest('.form-section').find('.options-container');
+        addOption(type, container);
+    });
+
+    $(document).on('click', '.delete-btn', function() {
+        let section = $(this).closest('.form-section');
+        section.remove();
+        $('#add-section-btn').appendTo('.container');
+    });
+
+    $(document).on('click', '.delete-option-btn', function() {
+        let option = $(this).closest('.option');
+        option.remove();
+    });
+
+    $('#preview-btn').on('click', function() {
+        let previewWindow = window.open('', '_blank');
+        let previewContent = `
+            <html>
+            <head>
+                <title>Form Preview</title>
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+                <style>
+                    body { background-color: rgb(240, 235, 248); }
+                    .container { margin-top: 30px; }
+                    .form-section { background-color: white; border: 2px solid rgb(103, 58, 183); margin-bottom: 20px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+                    .form-header { background-color: white; border-bottom: 2px solid rgb(103, 58, 183);margin-bottom: 10px; padding: 20px; border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; }
+                    .form-section h2 { text-align: center; margin-bottom: 30px; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="form-header">
+                        <h2>Untitled Form</h2>
+                    </div>
+        `;
+        $('.form-section').each(function() {
+            previewContent += '<div class="form-section">';
+            previewContent += '<div class="question-section">';
+            previewContent += '<input type="text" class="form-control question-label" disabled value="' + $(this).find('.question-label').val() + '">';
+            previewContent += '</div>';
+            let type = $(this).find('.custom-select').val();
+            let optionsContainer = $(this).find('.options-container');
+            if (type === 'multiple-choice') {
+                optionsContainer.find('.option').each(function() {
+                    previewContent += `
+                        <div class="option">
+                            <input type="radio" name="option-${index}">
+                            <label>${$(this).find('.option-label').val()}</label>
+                        </div>
+                    `;
+                });
+            } else if (type === 'checkboxes') {
+                optionsContainer.find('.option').each(function() {
+                    previewContent += `
+                        <div class="option">
+                            <input type="checkbox">
+                            <label>${$(this).find('.option-label').val()}</label>
+                        </div>
+                    `;
+                });
+            } else if (type === 'short-answer') {
+                previewContent += '<input type="text" class="form-control" placeholder="Short answer text">';
+            } else if (type === 'paragraph') {
+                previewContent += '<textarea class="form-control" placeholder="Paragraph text"></textarea>';
+            } else if (type === 'dropdown') {
+                let dropdownHtml = '<select class="form-control">';
+                optionsContainer.find('.option .option-label').each(function() {
+                    dropdownHtml += `<option>${$(this).val()}</option>`;
+                });
+                dropdownHtml += '</select>';
+                previewContent += dropdownHtml;
+            }
+            previewContent += '</div>';
+        });
+        previewContent += `
+                    <button class="btn btn-success">Submit</button>
+                </div>
+            </body>
+            </html>
+        `;
+        previewWindow.document.write(previewContent);
+        previewWindow.document.close();
+    });
+
+    $(document).on('mouseenter', '.form-section', function() {
+        $(this).addClass('active');
+        $('#add-section-btn').appendTo('.container');
+    });
+
+    $(document).on('mouseleave', '.form-section', function() {
+        $(this).removeClass('active');
+    });
+});
