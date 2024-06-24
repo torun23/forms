@@ -1,4 +1,3 @@
-Updated CSS
 body {
     background-color: rgb(240, 235, 248);
 }
@@ -12,14 +11,12 @@ body {
     border-bottom: 2px solid rgb(103, 58, 183);
     padding: 20px;
     margin-bottom: 10px;
-
     border-radius: 10px 10px 0 0;
     display: flex;
     justify-content: center; /* Center align text */
     align-items: center;
     position: relative; /* Ensure relative positioning for child absolute */
 }
-
 
 .form-header #add-section-btn {
     position: absolute;
@@ -38,8 +35,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding shadow effect */
 }
 
-
-
 .form-section.active {
     border: 2px solid rgb(103, 58, 183); /* Default border */
     border-left: 5px solid #007bff; /* Blue left border for active section */
@@ -47,17 +42,23 @@ body {
     transition: transform 0.2s;
 }
 
-
-.dropdown-section {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.header-row {
     display: flex;
     align-items: center;
 }
 
+.untitled-question {
+    flex: 65%; /* Cover 65% of the width */
+    margin-right: 10px;
+}
+
+.custom-select {
+    flex: 30%; /* Cover 30% of the width */
+    margin-right: 10px;
+}
+
 .delete-btn {
-    margin-left: 10px;
+    flex: 5%; /* Cover 5% of the width */
 }
 
 .options-container {
@@ -74,10 +75,17 @@ body {
 .options-container select {
     list-style-type: none;
 }
+
 .form-section textarea {
     margin-top: 40px; /* Add margin to move textarea down */
 }
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
 
-
-
-
+.option .delete-option-btn {
+    margin-left: 10px;
+}
