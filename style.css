@@ -1,167 +1,83 @@
+Updated CSS
+body {
+    background-color: rgb(240, 235, 248);
+}
+
 .container {
+    margin-top: 30px;
+}
+
+.form-header {
+    background-color: white;
+    border-bottom: 2px solid rgb(103, 58, 183);
+    padding: 20px;
+    margin-bottom: 10px;
+
+    border-radius: 10px 10px 0 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center; /* Center align text */
     align-items: center;
+    position: relative; /* Ensure relative positioning for child absolute */
+}
+
+
+.form-header #add-section-btn {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.form-section {
+    background-color: white;
+    border: 2px solid rgb(103, 58, 183);
+    margin-bottom: 30px; /* Increased margin for space */
+    padding: 20px;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding shadow effect */
+}
+
+
+
+.form-section.active {
+    border: 2px solid rgb(103, 58, 183); /* Default border */
+    border-left: 5px solid #007bff; /* Blue left border for active section */
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+
+.dropdown-section {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.delete-btn {
+    margin-left: 10px;
+}
+
+.options-container {
     margin-top: 20px;
 }
 
-.heading-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    max-width: 800px; /* Increased max-width for better spacing */
-    margin-bottom: 20px;
-}
-
-.form-title {
-    font-size: 24px;
-    font-weight: bold;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-}
-
-.form-container {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px; /* Increased max-width for better spacing */
-    overflow: hidden;
-    border-top: 8px solid #673ab7; /* Dark purple border */
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.form-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.form-element {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lighter shadow */
-    padding: 20px;
-    width: 100%;
-    max-width: 800px; /* Increased max-width for better spacing */
+#preview-btn {
+    display: block;
     margin: 20px auto;
-    transition: all 0.3s ease;
+    align-items: flex-start;
 }
 
-.form-element:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
-    transform: translateY(-5px); /* Lifts the element a bit on hover */
+/* Remove bullets from dropdown options */
+.options-container select {
+    list-style-type: none;
+}
+.form-section textarea {
+    margin-top: 40px; /* Add margin to move textarea down */
 }
 
-.element-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
 
-.element-header h5 {
-    margin: 0;
-    font-size: 24px; /* Maintain consistent font size */
-}
 
-.option-container {
-    margin-top: 10px;
-}
 
-.delete-btn,.add-option-btn {
-    margin-left: 10px;
-    font-size: 18px; /* Larger font size for buttons */
-}
-
-.preview-button {
-    margin-left: 10px;
-    color: #6c757d;
-    font-size: 24px; /* Larger font size for the preview button */
-}
-
-/* New styles for preview section */
-.preview-container {
-    max-width: 800px; /* Limit width for preview section*/
-    margin-top: 20px;
-}
-
-.preview-element {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.preview-element.element-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.preview-element.option-container {
-    margin-top: 10px;
-}
-
-.preview-element.option-element {
-    margin-bottom: 10px;
-}
-
-.preview-element.short-answer-input,.preview-element.paragraph-textarea {
-    border: none;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    letter-spacing: inherit;
-    min-height: 1.5em;
-    width: 100%;
-    resize: none;
-    pointer-events: none;
-}
-
-.preview-element textarea {
-    min-height: 1.5em;
-    resize: none;
-    width: 100%;
-}
-
-.preview-element input[type="radio"],.preview-element input[type="checkbox"] {
-    pointer-events: none;
-}
-
-.preview-element input[type="radio"]:checked + label::before,.preview-element input[type="checkbox"]:checked + label::before {
-    content: "";
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-color: #007bff;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-.preview-element input[type="radio"]:checked + label,.preview-element input[type="checkbox"]:checked + label {
-    color: #007bff;
-}
-
-.preview-element select {
-    background-color: transparent;
-    border: none;
-}
-
-.preview-element select option[selected] {
-    background-color: #007bff;
-    color: white;
-}
-
-.preview-element.option-container {
-    margin-top: 10px;
-}
