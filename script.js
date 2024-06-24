@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     let index = 1;
 
@@ -22,14 +23,13 @@ $(document).ready(function() {
         }
         container.append(optionHtml);
     }
+    
 
     function createFormSection() {
         let newSection = `
             <div class="form-section" data-index="${index}">
-                <div class="question-section">
-                    <input type="text" class="form-control question-label" placeholder="Untitled Question">
-                </div>
-                <div class="dropdown-section">
+                <div class="header-row">
+                    <input type="text" class="form-control untitled-question" placeholder="Untitled Question">
                     <select class="custom-select">
                         <option value="short-answer">Short Answer</option>
                         <option value="paragraph">Paragraph</option>
@@ -45,6 +45,8 @@ $(document).ready(function() {
         $('#form-container').append(newSection);
         index++;
     }
+    
+    
 
     $('#add-section-btn').on('click', function() {
         createFormSection();
