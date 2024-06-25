@@ -1,11 +1,22 @@
+/* Global styles */
 body {
     background-color: rgb(240, 235, 248);
+    font-family: Arial, sans-serif; /* Example: Set a preferred font */
+}
+
+#add-section-btn {
+    position: absolute;
+    left: -60px; /* Initial position */
+    top: 24px; /* Initial position */
+    z-index: 1000; /* Ensure the button is above other elements */
 }
 
 .container {
+    position: relative; /* Ensure relative positioning for absolute child */
     margin-top: 30px;
 }
 
+/* Header styles */
 .form-header {
     background-color: white;
     border-bottom: 2px solid rgb(103, 58, 183);
@@ -13,36 +24,36 @@ body {
     margin-bottom: 10px;
     border-radius: 10px 10px 0 0;
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    position: relative; 
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
 
 .form-header h2 {
     flex: 1; /* Take up remaining space */
-    text-align: center; 
-    margin: 0; 
+    text-align: center;
+    margin: 0;
 }
 
 #preview-btn {
-    margin-right: auto;
+    margin-right: 10px; /* Adjust margin for preview button */
 }
 
+/* Form section styles */
 .form-section {
     background-color: white;
     border: 2px solid rgb(103, 58, 183);
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
     padding: 20px;
     position: relative;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: border-left-color 0.3s, transform 0.3s;
 }
 
 .form-section.active {
-    border: 2px solid rgb(103, 58, 183);
-    border-left: 5px solid #007bff; 
+    border-left-color: #007bff; /* Blue left border for active section */
     transform: scale(1.05);
-    transition: transform 0.2s;
 }
 
 .header-row {
@@ -51,17 +62,17 @@ body {
 }
 
 .untitled-question {
-    flex: 65%; 
+    flex: 65%; /* Cover 65% of the width */
     margin-right: 10px;
 }
 
 .custom-select {
-    flex: 30%; 
+    flex: 30%; /* Cover 30% of the width */
     margin-right: 10px;
 }
 
 .delete-btn {
-    flex: 5%;
+    flex: 5%; /* Cover 5% of the width */
 }
 
 .options-container {
@@ -69,11 +80,11 @@ body {
 }
 
 .options-container select {
-    list-style-type: none;
+    list-style-type: none; /* Remove bullets from dropdown options */
 }
 
 .form-section textarea {
-    margin-top: 40px; 
+    margin-top: 20px; /* Adjust margin for textarea */
 }
 
 .option {
