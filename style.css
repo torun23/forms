@@ -13,31 +13,34 @@ body {
     margin-bottom: 10px;
     border-radius: 10px 10px 0 0;
     display: flex;
-    justify-content: center; /* Center align text */
-    align-items: center;
-    position: relative; /* Ensure relative positioning for child absolute */
+    justify-content: space-between; 
+    align-items: center; 
+    position: relative; 
 }
 
-.form-header #add-section-btn {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+.form-header h2 {
+    flex: 1; /* Take up remaining space */
+    text-align: center; 
+    margin: 0; 
+}
+
+#preview-btn {
+    margin-right: auto;
 }
 
 .form-section {
     background-color: white;
     border: 2px solid rgb(103, 58, 183);
-    margin-bottom: 30px; /* Increased margin for space */
+    margin-bottom: 30px; 
     padding: 20px;
     position: relative;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adding shadow effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .form-section.active {
-    border: 2px solid rgb(103, 58, 183); /* Default border */
-    border-left: 5px solid #007bff; /* Blue left border for active section */
+    border: 2px solid rgb(103, 58, 183);
+    border-left: 5px solid #007bff; 
     transform: scale(1.05);
     transition: transform 0.2s;
 }
@@ -48,37 +51,31 @@ body {
 }
 
 .untitled-question {
-    flex: 65%; /* Cover 65% of the width */
+    flex: 65%; 
     margin-right: 10px;
 }
 
 .custom-select {
-    flex: 30%; /* Cover 30% of the width */
+    flex: 30%; 
     margin-right: 10px;
 }
 
 .delete-btn {
-    flex: 5%; /* Cover 5% of the width */
+    flex: 5%;
 }
 
 .options-container {
     margin-top: 20px;
 }
 
-#preview-btn {
-    display: block;
-    margin: 20px auto;
-    align-items: flex-start;
-}
-
-/* Remove bullets from dropdown options */
 .options-container select {
     list-style-type: none;
 }
 
 .form-section textarea {
-    margin-top: 40px; /* Add margin to move textarea down */
+    margin-top: 40px; 
 }
+
 .option {
     display: flex;
     align-items: center;
