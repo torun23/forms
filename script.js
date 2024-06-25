@@ -1,6 +1,6 @@
-
 $(document).ready(function() {
     let index = 1;
+    let activeSection = null; // Track the currently active section
 
     function addOption(type, container) {
         let optionIndex = container.children().length + 1;
@@ -23,7 +23,6 @@ $(document).ready(function() {
         }
         container.append(optionHtml);
     }
-    
 
     function createFormSection() {
         let newSection = `
@@ -44,15 +43,43 @@ $(document).ready(function() {
         `;
         $('#form-container').append(newSection);
         index++;
+
+        // Move the add section button next to the newly created section
+        positionAddSectionButton();
     }
-    
-    
+
+    function positionAddSectionButton() {
+        if (activeSection) {
+            let position = activeSection.position();
+            let buttonWidth = $('#add-section-btn').outerWidth();
+            let buttonHeight = $('#add-section-btn').outerHeight();
+
+            // Set position of the add section button
+            $('#add-section-btn').css({
+                position: 'absolute',
+                left: position.left - buttonWidth - 47 + 'px', // Adjust as needed
+                top: position.top + activeSection.height() / 2 - buttonHeight / 2 + 'px' // Adjust as needed
+            });
+        } else {
+            // If no active section, move the button to the bottom of the form container
+            let containerPosition = $('#form-container').position();
+            let buttonWidth = $('#add-section-btn').outerWidth();
+            let buttonHeight = $('#add-section-btn').outerHeight();
+
+            $('#add-section-btn').css({
+                position: 'absolute',
+                left: containerPosition.left + 'px',
+                top: containerPosition.top + $('#form-container').height() + 20 + 'px'
+            });
+        }
+    }
 
     $('#add-section-btn').on('click', function() {
         createFormSection();
         $('.form-section').removeClass('active');
-        $('.form-section').last().addClass('active');
-        $(this).appendTo('.container');
+        activeSection = $('.form-section').last(); // Set the newly created section as active
+        activeSection.addClass('active');
+        positionAddSectionButton();
     });
 
     $(document).on('change', '.custom-select', function() {
@@ -64,7 +91,7 @@ $(document).ready(function() {
         $(this).closest('.form-section').find('.add-option-btn').remove();
 
         if (type === 'short-answer') {
-            container.append('<input type="text" class="form-control" disabled placeholder="Short answer text">');
+            container.append('<input type="text-area" class="form-control" disabled placeholder="Short answer text">');
         } else if (type === 'paragraph') {
             container.append('<textarea class="form-control" disabled placeholder="Paragraph text"></textarea>');
         } else {
@@ -81,8 +108,18 @@ $(document).ready(function() {
 
     $(document).on('click', '.delete-btn', function() {
         let section = $(this).closest('.form-section');
+        let prevSection = section.prev('.form-section');
         section.remove();
-        $('#add-section-btn').appendTo('.container');
+        if (section.hasClass('active')) {
+            activeSection = null; // Reset activeSection if deleted
+        }
+        if (prevSection.length > 0) {
+            prevSection.find('.delete-btn').appendTo(prevSection.find('.header-row'));
+        } else {
+            // If no previous section, move the delete button to the bottom of the form container
+            $('#delete-btn').appendTo('#form-container');
+        }
+        positionAddSectionButton(); // Re-position add section button
     });
 
     $(document).on('click', '.delete-option-btn', function() {
@@ -101,7 +138,7 @@ $(document).ready(function() {
                     body { background-color: rgb(240, 235, 248); }
                     .container { margin-top: 30px; }
                     .form-section { background-color: white; border: 2px solid rgb(103, 58, 183); margin-bottom: 20px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
-                    .form-header { background-color: white; border-bottom: 2px solid rgb(103, 58, 183);margin-bottom: 10px; padding: 20px; border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; }
+                    .form-header { background-color: white; border-bottom: 2px solid rgb(103, 58, 183); margin-bottom: 10px; padding: 20px; border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; }
                     .form-section h2 { text-align: center; margin-bottom: 30px; }
                 </style>
             </head>
@@ -160,12 +197,10 @@ $(document).ready(function() {
         previewWindow.document.close();
     });
 
-    $(document).on('mouseenter', '.form-section', function() {
+    $(document).on('click', '.form-section', function() {
+        $('.form-section').removeClass('active');
         $(this).addClass('active');
-        $('#add-section-btn').appendTo('.container');
-    });
-
-    $(document).on('mouseleave', '.form-section', function() {
-        $(this).removeClass('active');
+        activeSection = $(this); // Set the clicked section as active
+        positionAddSectionButton();
     });
 });
