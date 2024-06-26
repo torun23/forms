@@ -1,6 +1,6 @@
 $(document).ready(function() {
     let index = 1;
-    let activeSection = null; // Track the currently active section
+    let activeSection = null;
 
     function addOption(type, container) {
         let optionIndex = container.children().length + 1;
@@ -44,7 +44,6 @@ $(document).ready(function() {
         $('#form-container').append(newSection);
         index++;
 
-        // Move the add section button next to the newly created section
         positionAddSectionButton();
     }
 
@@ -54,14 +53,12 @@ $(document).ready(function() {
             let buttonWidth = $('#add-section-btn').outerWidth();
             let buttonHeight = $('#add-section-btn').outerHeight();
 
-            // Set position of the add section button
             $('#add-section-btn').css({
                 position: 'absolute',
-                left: position.left - buttonWidth - 47 + 'px', // Adjust as needed
-                top: position.top + activeSection.height() / 2 - buttonHeight / 2 + 'px' // Adjust as needed
+                left: position.left - buttonWidth - 47 + 'px',
+                top: position.top + activeSection.height() / 2 - buttonHeight / 2 + 'px'
             });
         } else {
-            // If no active section, move the button to the bottom of the form container
             let containerPosition = $('#form-container').position();
             let buttonWidth = $('#add-section-btn').outerWidth();
             let buttonHeight = $('#add-section-btn').outerHeight();
@@ -77,7 +74,7 @@ $(document).ready(function() {
     $('#add-section-btn').on('click', function() {
         createFormSection();
         $('.form-section').removeClass('active');
-        activeSection = $('.form-section').last(); // Set the newly created section as active
+        activeSection = $('.form-section').last();
         activeSection.addClass('active');
         positionAddSectionButton();
     });
@@ -85,9 +82,8 @@ $(document).ready(function() {
     $(document).on('change', '.custom-select', function() {
         let type = $(this).val();
         let container = $(this).closest('.form-section').find('.options-container');
-        container.empty(); // Clear existing options when dropdown changes
+        container.empty();
 
-        // Remove any existing "Add Option" button
         $(this).closest('.form-section').find('.add-option-btn').remove();
 
         if (type === 'short-answer') {
@@ -111,15 +107,14 @@ $(document).ready(function() {
         let prevSection = section.prev('.form-section');
         section.remove();
         if (section.hasClass('active')) {
-            activeSection = null; // Reset activeSection if deleted
+            activeSection = null;
         }
         if (prevSection.length > 0) {
             prevSection.find('.delete-btn').appendTo(prevSection.find('.header-row'));
         } else {
-            // If no previous section, move the delete button to the bottom of the form container
             $('#delete-btn').appendTo('#form-container');
         }
-        positionAddSectionButton(); // Re-position add section button
+        positionAddSectionButton();
     });
 
     $(document).on('click', '.delete-option-btn', function() {
@@ -140,6 +135,7 @@ $(document).ready(function() {
                     .form-section { background-color: white; border: 2px solid rgb(103, 58, 183); margin-bottom: 20px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
                     .form-header { background-color: white; border-bottom: 2px solid rgb(103, 58, 183); margin-bottom: 10px; padding: 20px; border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; }
                     .form-section h2 { text-align: center; margin-bottom: 30px; }
+                    .form-section .question-section { margin-bottom: 20px; } /* Add margin-bottom to the question section */
                 </style>
             </head>
             <body>
@@ -151,7 +147,7 @@ $(document).ready(function() {
         $('.form-section').each(function() {
             previewContent += '<div class="form-section">';
             previewContent += '<div class="question-section">';
-            previewContent += '<input type="text" class="form-control question-label" disabled value="' + $(this).find('.question-label').val() + '">';
+            previewContent += '<input type="text" class="form-control question-label" disabled value="' + $(this).find('.untitled-question').val() + '">';
             previewContent += '</div>';
             let type = $(this).find('.custom-select').val();
             let optionsContainer = $(this).find('.options-container');
@@ -200,7 +196,7 @@ $(document).ready(function() {
     $(document).on('click', '.form-section', function() {
         $('.form-section').removeClass('active');
         $(this).addClass('active');
-        activeSection = $(this); // Set the clicked section as active
+        activeSection = $(this);
         positionAddSectionButton();
     });
 });
