@@ -1,22 +1,20 @@
-/* Global styles */
 body {
     background-color: rgb(240, 235, 248);
-    font-family: Arial, sans-serif; /* Example: Set a preferred font */
+    font-family: Arial, sans-serif;
 }
 
 #add-section-btn {
     position: absolute;
-    left: -60px; /* Initial position */
-    top: 24px; /* Initial position */
-    z-index: 1000; /* Ensure the button is above other elements */
+    left: -60px; 
+    top: 24px; 
+    z-index: 1000; 
 }
 
 .container {
-    position: relative; /* Ensure relative positioning for absolute child */
+    position: relative; 
     margin-top: 30px;
 }
 
-/* Header styles */
 .form-header {
     background-color: white;
     border-bottom: 2px solid rgb(103, 58, 183);
@@ -30,16 +28,15 @@ body {
 }
 
 .form-header h2 {
-    flex: 1; /* Take up remaining space */
+    flex: 1; 
     text-align: center;
     margin: 0;
 }
 
 #preview-btn {
-    margin-right: 10px; /* Adjust margin for preview button */
+    margin-right: 10px;
 }
 
-/* Form section styles */
 .form-section {
     background-color: white;
     border: 2px solid rgb(103, 58, 183);
@@ -52,7 +49,7 @@ body {
 }
 
 .form-section.active {
-    border-left-color: #007bff; /* Blue left border for active section */
+    border-left-color: #007bff;
     transform: scale(1.05);
 }
 
@@ -62,17 +59,17 @@ body {
 }
 
 .untitled-question {
-    flex: 65%; /* Cover 65% of the width */
+    flex: 65%;
     margin-right: 10px;
 }
 
 .custom-select {
-    flex: 30%; /* Cover 30% of the width */
+    flex: 30%;
     margin-right: 10px;
 }
 
 .delete-btn {
-    flex: 5%; /* Cover 5% of the width */
+    flex: 5%;
 }
 
 .options-container {
@@ -80,20 +77,29 @@ body {
 }
 
 .options-container select {
-    list-style-type: none; /* Remove bullets from dropdown options */
+    list-style-type: none;
 }
 
 .form-section textarea {
-    margin-top: 20px; /* Adjust margin for textarea */
+    margin-top: 20px;
 }
 
 .option {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 5px;
+}
+
+.option input[type="radio"],
+.option input[type="checkbox"] {
+    margin-right: 10px;
 }
 
 .option .delete-option-btn {
     margin-left: 10px;
+}
+
+.option-label {
+    width: 60%;
+    text-align: left; 
 }
