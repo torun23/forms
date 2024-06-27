@@ -10,14 +10,14 @@ $(document).ready(function() {
                 <div class="option">
                     <input type="${type === 'multiple-choice' ? 'radio' : 'checkbox'}" disabled>
                     <input type="text" class="form-control option-label" value="Option ${optionIndex}">
-                    <button class="btn btn-danger btn-sm delete-option-btn">Delete</button>
+                    <span class="delete-option-icon">&times;</span>
                 </div>
             `;
         } else if (type === 'dropdown') {
             optionHtml = `
                 <div class="option">
                     <input type="text" class="form-control option-label" value="Option ${optionIndex}">
-                    <button class="btn btn-danger btn-sm delete-option-btn">Delete</button>
+                    <span class="delete-option-icon">&times;</span>
                 </div>
             `;
         }
@@ -28,7 +28,7 @@ $(document).ready(function() {
         let newSection = `
             <div class="form-section" data-index="${index}">
                 <div class="header-row">
-                    <input type="text" class="form-control untitled-question" placeholder="Untitled Question">
+                    <textarea class="form-control untitled-question" placeholder="Untitled Question" rows="1"></textarea>
                     <select class="custom-select">
                         <option value="short-answer">Short Answer</option>
                         <option value="paragraph">Paragraph</option>
@@ -36,7 +36,7 @@ $(document).ready(function() {
                         <option value="checkboxes">Checkboxes</option>
                         <option value="dropdown">Dropdown</option>
                     </select>
-                    <button class="btn btn-danger delete-btn">Delete</button>
+                    <span class="delete-section-icon"><i class="fas fa-trash-alt"></i></span>
                 </div>
                 <div class="options-container"></div>
             </div>
@@ -87,7 +87,7 @@ $(document).ready(function() {
         $(this).closest('.form-section').find('.add-option-btn').remove();
 
         if (type === 'short-answer') {
-            container.append('<input type="text-area" class="form-control" disabled placeholder="Short answer text">');
+            container.append('<input type="text" class="form-control" disabled placeholder="Short answer text">');
         } else if (type === 'paragraph') {
             container.append('<textarea class="form-control" disabled placeholder="Paragraph text"></textarea>');
         } else {
@@ -102,7 +102,7 @@ $(document).ready(function() {
         addOption(type, container);
     });
 
-    $(document).on('click', '.delete-btn', function() {
+    $(document).on('click', '.delete-section-icon', function() {
         let section = $(this).closest('.form-section');
         let prevSection = section.prev('.form-section');
         section.remove();
@@ -110,14 +110,14 @@ $(document).ready(function() {
             activeSection = null;
         }
         if (prevSection.length > 0) {
-            prevSection.find('.delete-btn').appendTo(prevSection.find('.header-row'));
+            prevSection.find('.delete-section-icon').appendTo(prevSection.find('.header-row'));
         } else {
             $('#delete-btn').appendTo('#form-container');
         }
         positionAddSectionButton();
     });
 
-    $(document).on('click', '.delete-option-btn', function() {
+    $(document).on('click', '.delete-option-icon', function() {
         let option = $(this).closest('.option');
         option.remove();
     });
@@ -147,7 +147,7 @@ $(document).ready(function() {
         $('.form-section').each(function() {
             previewContent += '<div class="form-section">';
             previewContent += '<div class="question-section">';
-            previewContent += '<input type="text" class="form-control question-label" disabled value="' + $(this).find('.untitled-question').val() + '">';
+            previewContent += '<textarea class="form-control question-label" disabled>' + $(this).find('.untitled-question').val() + '</textarea>';
             previewContent += '</div>';
             let type = $(this).find('.custom-select').val();
             let optionsContainer = $(this).find('.options-container');
