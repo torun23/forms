@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     let index = 1;
     let activeSection = null;
