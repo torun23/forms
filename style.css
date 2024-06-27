@@ -59,17 +59,22 @@ body {
 }
 
 .untitled-question {
-    flex: 65%;
+    flex: 1;
     margin-right: 10px;
+    width: 60%; /* Adjusted width */
 }
 
 .custom-select {
-    flex: 30%;
+    flex: 1;
+    width: 30%;
     margin-right: 10px;
 }
 
-.delete-btn {
-    flex: 5%;
+.delete-section-icon {
+    flex: 0.1;
+    cursor: pointer;
+    color: grey;
+    font-size: 1.5em;
 }
 
 .options-container {
@@ -95,8 +100,11 @@ body {
     margin-right: 10px;
 }
 
-.option .delete-option-btn {
+.option .delete-option-icon {
     margin-left: 10px;
+    cursor: pointer;
+    color: grey;
+    font-size: 1.5em; /* Increased icon size */
 }
 
 .option-label {
