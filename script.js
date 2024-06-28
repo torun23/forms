@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     let index = 1;
     let activeSection = null;
@@ -200,4 +199,16 @@ $(document).ready(function() {
         activeSection = $(this);
         positionAddSectionButton();
     });
+
+$('#form-container').sortable({
+    placeholder: 'ui-state-highlight',
+    start: function (event, ui) {
+        ui.placeholder.height(ui.item.height());
+    },
+    stop: function (event, ui) {
+        positionAddSectionButton();
+    }
+});
+
+$('#form-container').disableSelection();
 });
