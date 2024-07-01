@@ -106,6 +106,7 @@ $(document).ready(function() {
         let section = $(this).closest('.form-section');
         let prevSection = section.prev('.form-section');
         section.remove();
+        refreshOptionNumbers(prevSection);
         if (section.hasClass('active')) {
             activeSection = null;
         }
