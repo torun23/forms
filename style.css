@@ -1,9 +1,9 @@
-/* General styles */
+
+
 body {
     background-color: rgb(240, 235, 248);
     font-family: Arial, sans-serif;
 }
-
 .container {
     position: relative;
     margin-top: 30px;
@@ -14,13 +14,15 @@ body {
     background-color: white;
     padding: 20px;
     margin-bottom: 10px;
+    margin-left: 173px;
     border-radius: 10px 10px 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-top: 10px solid rgb(103, 58, 183); /* Purple top border */
+    border-top: 10px solid rgb(103, 58, 183); 
+    width: 69%;
 }
 
 .form-header h2 {
@@ -31,19 +33,19 @@ body {
 
 #preview-btn {
     margin-right: 10px;
-    background-color: #007bff; /* Blue background color */
-    border-color: #007bff; /* Blue border color */
-    border-radius: 50%; /* Circular border */
-    width: 40px; /* Adjust width */
-    height: 40px; /* Adjust height */
+    background-color: #007bff; 
+    border-color: #007bff; 
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px; 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #preview-btn i {
-    margin-right: 0; /* Remove space between icon and text */
-    font-size: 1.5em; /* Adjust icon size if needed */
+    margin-right: 0; 
+    font-size: 1.5em; 
 }
 
 #add-section-btn {
@@ -53,37 +55,39 @@ body {
     z-index: 1000;
 }
 
-/* Form section styles */
+
 .form-section {
     background-color: white;
+    width: 69%;
     margin-bottom: 30px;
+    margin-left: 173px;
     padding: 20px;
     position: relative;
+    align-items: center;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
 }
 
 .form-section.active {
-    border-left: 10px solid rgb(66, 133, 244); /* Light blue thick left border */
+    border-left: 6px solid rgb(66, 133, 244); 
     transform: scale(1.02);
 }
 
 .header-row {
     display: flex;
-    align-items: baseline; /* Change align-items to baseline */
+    align-items: baseline; 
     position: relative;
 }
 
 .untitled-question {
     flex: 1;
     margin-right: 10px;
-    width: calc(100% - 230px); /* Adjusted width to better fit with dropdown */
+    width: calc(100% - 230px); 
 }
 
 .custom-select {
-    width: 220px; /* Adjusted width to match the changed width of untitled-question */
-    margin-right: 10px;
+    width: 220px; 
 }
 
 .delete-section-icon {
@@ -91,6 +95,7 @@ body {
     cursor: pointer;
     color: grey;
     font-size: 1.5em;
+    margin-left: 10px;
 }
 
 .options-container {
@@ -120,7 +125,7 @@ body {
     margin-left: 10px;
     cursor: pointer;
     color: grey;
-    font-size: 1.5em; /* Increased icon size */
+    font-size: 1.5em; 
 }
 
 .option-label {
@@ -128,15 +133,16 @@ body {
     text-align: left;
 }
 
-/* Add Option button */
+
 .add-option-btn {
-    background-color: #f0f0f0; /* Light gray background */
-    color: #333; /* Dark text color */
+    background-color: #f0f0f0; 
+    color: #333; 
+    margin-top: 11px;
 }
 
-/* Placeholder for sortable */
+
 .ui-state-highlight {
-    background: #d3d3d3 !important; /* Light grey background color */
+    background: #d3d3d3 !important; 
     height: 3em;
     line-height: 1.2em;
     margin-bottom: 10px;
