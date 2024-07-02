@@ -24,10 +24,17 @@ $(document).ready(function() {
         container.append(optionHtml);
     }
 
+    function refreshOptionNumbers(container) {
+        container.find('.option').each(function(index) {
+            $(this).find('.option-label').val(`Option ${index + 1}`);
+        });
+    }
+
     function createFormSection() {
         let newSection = `
             <div class="form-section" data-index="${index}">
                 <div class="header-row">
+                    ${index === 1 ? '<div class="violet-border"></div>' : ''}
                     <textarea class="form-control untitled-question" placeholder="Untitled Question" rows="1"></textarea>
                     <select class="custom-select">
                         <option value="short-answer">Short Answer</option>
@@ -100,27 +107,32 @@ $(document).ready(function() {
         let type = $(this).closest('.form-section').find('.custom-select').val();
         let container = $(this).closest('.form-section').find('.options-container');
         addOption(type, container);
+        refreshOptionNumbers(container);
     });
 
     $(document).on('click', '.delete-section-icon', function() {
         let section = $(this).closest('.form-section');
         let prevSection = section.prev('.form-section');
+        let nextSection = section.next('.form-section');
         section.remove();
-        refreshOptionNumbers(prevSection);
         if (section.hasClass('active')) {
             activeSection = null;
         }
         if (prevSection.length > 0) {
             prevSection.find('.delete-section-icon').appendTo(prevSection.find('.header-row'));
-        } else {
-            $('#delete-btn').appendTo('#form-container');
+            activeSection = prevSection;
+        } else if (nextSection.length > 0) {
+            nextSection.find('.delete-section-icon').appendTo(nextSection.find('.header-row'));
+            activeSection = nextSection;
         }
         positionAddSectionButton();
     });
 
     $(document).on('click', '.delete-option-icon', function() {
         let option = $(this).closest('.option');
+        let container = option.closest('.options-container');
         option.remove();
+        refreshOptionNumbers(container);
     });
 
     $('#preview-btn').on('click', function() {
@@ -194,6 +206,7 @@ $(document).ready(function() {
         previewWindow.document.close();
     });
 
+
     $(document).on('click', '.form-section', function() {
         $('.form-section').removeClass('active');
         $(this).addClass('active');
@@ -201,15 +214,15 @@ $(document).ready(function() {
         positionAddSectionButton();
     });
 
-$('#form-container').sortable({
-    placeholder: 'ui-state-highlight',
-    start: function (event, ui) {
-        ui.placeholder.height(ui.item.height());
-    },
-    stop: function (event, ui) {
-        positionAddSectionButton();
-    }
-});
+    $('#form-container').sortable({
+        placeholder: 'ui-state-highlight',
+        start: function (event, ui) {
+            ui.placeholder.height(ui.item.height());
+        },
+        stop: function (event, ui) {
+            positionAddSectionButton();
+        }
+    });
 
-$('#form-container').disableSelection();
+    $('#form-container').disableSelection();
 });
