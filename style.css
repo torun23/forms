@@ -14,7 +14,7 @@ body {
     background-color: white;
     padding: 20px;
     margin-bottom: 10px;
-    margin-left: 173px;
+    margin-left: 240px;
     border-radius: 10px 10px 0 0;
     display: flex;
     justify-content: space-between;
@@ -22,7 +22,7 @@ body {
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-top: 10px solid rgb(103, 58, 183); 
-    width: 69%;
+    width: 56%;
 }
 
 .form-header h2 {
@@ -58,9 +58,9 @@ body {
 
 .form-section {
     background-color: white;
-    width: 69%;
+    width: 56%;
     margin-bottom: 30px;
-    margin-left: 173px;
+    margin-left: 240px;
     padding: 20px;
     position: relative;
     align-items: center;
@@ -94,7 +94,7 @@ body {
     flex: 0.1;
     cursor: pointer;
     color: grey;
-    font-size: 1.5em;
+    font-size: 1.1em;
     margin-left: 10px;
 }
 
@@ -138,6 +138,8 @@ body {
     background-color: #f0f0f0; 
     color: #333; 
     margin-top: 11px;
+    font-size: 0.9em;
+
 }
 
 
@@ -148,4 +150,6 @@ body {
     margin-bottom: 10px;
     border-radius: 10px;
     transition: background-color 0.3s ease;
+    width: 56%;
+    margin-left: 240px;
 }
