@@ -53,6 +53,9 @@ body {
     left: -60px;
     top: 24px;
     z-index: 1000;
+    border-radius: 50%; 
+    background-color: #007bff; 
+
 }
 
 
@@ -144,12 +147,11 @@ body {
 
 
 .ui-state-highlight {
-    background: #d3d3d3 !important; 
-    height: 3em;
-    line-height: 1.2em;
+    background:  rgb(240, 235, 248) !important; 
+    /* height: 3em; */
+    /* line-height: 1.2em; */
     margin-bottom: 10px;
     border-radius: 10px;
-    transition: background-color 0.3s ease;
     width: 56%;
     margin-left: 240px;
 }
