@@ -120,12 +120,14 @@ $(document).ready(function() {
             activeSection = null;
         }
         if (prevSection.length > 0) {
-            prevSection.find('.delete-section-icon').appendTo(prevSection.find('.header-row'));
-            activeSection = prevSection;
-        } else if (nextSection.length > 0) {
-            nextSection.find('.delete-section-icon').appendTo(nextSection.find('.header-row'));
+            prevSection.find('.delete-section-icon').appendTo(prevSection.find('.form-section'));
+            activeSection = prevSection;row
+        } 
+        else if (nextSection.length > 0) {
+            nextSection.find('.delete-section-icon').appendTo(nextSection.find('.form-header'));
             activeSection = nextSection;
         }
+
         positionAddSectionButton();
     });
 
@@ -146,8 +148,8 @@ $(document).ready(function() {
                 <style>
                     body { background-color: rgb(240, 235, 248); }
                     .container { margin-top: 30px; }
-                    .form-section {background-color: white;width: 69%;margin-bottom: 30px;margin-left: 173px;padding: 20px;position: relative;align-items: center;border-radius: 10px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
-                    .form-header {background-color: white;padding: 20px;margin-bottom: 10px;margin-left: 173px;border-radius: 10px 10px 0 0;display: flex;justify-content: space-between;align-items: center; position: relative;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);border-top: 10px solid rgb(103, 58, 183);width: 69%; }
+                    .form-section {background-color: white;width: 56%;margin-bottom: 30px;margin-left: 240px;padding: 20px;position: relative;align-items: center;border-radius: 10px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+                    .form-header {background-color: white;padding: 20px;margin-bottom: 10px;margin-left: 240px;border-radius: 10px 10px 0 0;display: flex;justify-content: space-between;align-items: center; position: relative;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);border-top: 10px solid rgb(103, 58, 183);width: 56%; }
                     .form-section h2 { text-align: center; margin-bottom: 30px; }
                     .form-section .question-section { margin-bottom: 20px; } /* Add margin-bottom to the question section */
                 </style>
@@ -198,7 +200,7 @@ $(document).ready(function() {
             previewContent += '</div>';
         });
         previewContent += `
-                    <button class="btn btn-success" style = "margin-left: 173px; margin-top: 20px ">Submit</button>
+                    <button class="btn btn-success" style = "margin-left: 240px; margin-top: 20px ">Submit</button>
                 </div>
             </body>
             </html>
