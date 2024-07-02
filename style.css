@@ -12,7 +12,6 @@ body {
 /* Form header styles */
 .form-header {
     background-color: white;
-    border-bottom: 2px solid rgb(103, 58, 183);
     padding: 20px;
     margin-bottom: 10px;
     border-radius: 10px 10px 0 0;
@@ -20,6 +19,8 @@ body {
     justify-content: space-between;
     align-items: center;
     position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 10px solid rgb(103, 58, 183); /* Purple top border */
 }
 
 .form-header h2 {
@@ -32,10 +33,17 @@ body {
     margin-right: 10px;
     background-color: #007bff; /* Blue background color */
     border-color: #007bff; /* Blue border color */
+    border-radius: 50%; /* Circular border */
+    width: 40px; /* Adjust width */
+    height: 40px; /* Adjust height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #preview-btn i {
-    margin-right: 5px; /* Space between icon and text */
+    margin-right: 0; /* Remove space between icon and text */
+    font-size: 1.5em; /* Adjust icon size if needed */
 }
 
 #add-section-btn {
@@ -48,23 +56,23 @@ body {
 /* Form section styles */
 .form-section {
     background-color: white;
-    border: 2px solid rgb(103, 58, 183);
     margin-bottom: 30px;
     padding: 20px;
     position: relative;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: border-left-color 0.3s, transform 0.3s;
+    transition: transform 0.3s;
 }
 
 .form-section.active {
-    border-left-color: #007bff;
-    transform: scale(1.05);
+    border-left: 10px solid rgb(66, 133, 244); /* Light blue thick left border */
+    transform: scale(1.02);
 }
 
 .header-row {
     display: flex;
     align-items: baseline; /* Change align-items to baseline */
+    position: relative;
 }
 
 .untitled-question {
