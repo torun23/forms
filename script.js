@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     let index = 1;
     let activeSection = null;
@@ -145,8 +146,8 @@ $(document).ready(function() {
                 <style>
                     body { background-color: rgb(240, 235, 248); }
                     .container { margin-top: 30px; }
-                    .form-section { background-color: white; border: 2px solid rgb(103, 58, 183); margin-bottom: 20px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
-                    .form-header { background-color: white; border-bottom: 2px solid rgb(103, 58, 183); margin-bottom: 10px; padding: 20px; border-radius: 10px 10px 0 0; display: flex; justify-content: center; align-items: center; }
+                    .form-section {background-color: white;width: 69%;margin-bottom: 30px;margin-left: 173px;padding: 20px;position: relative;align-items: center;border-radius: 10px;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+                    .form-header {background-color: white;padding: 20px;margin-bottom: 10px;margin-left: 173px;border-radius: 10px 10px 0 0;display: flex;justify-content: space-between;align-items: center; position: relative;box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);border-top: 10px solid rgb(103, 58, 183);width: 69%; }
                     .form-section h2 { text-align: center; margin-bottom: 30px; }
                     .form-section .question-section { margin-bottom: 20px; } /* Add margin-bottom to the question section */
                 </style>
@@ -197,7 +198,7 @@ $(document).ready(function() {
             previewContent += '</div>';
         });
         previewContent += `
-                    <button class="btn btn-success">Submit</button>
+                    <button class="btn btn-success" style = "margin-left: 173px; margin-top: 20px ">Submit</button>
                 </div>
             </body>
             </html>
