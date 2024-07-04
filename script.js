@@ -1,7 +1,7 @@
 $(document).ready(function() {
     let index = 1;
     let activeSection = null;
-
+// Add option function
     function addOption(type, container) {
         let optionIndex = container.children().length + 1;
         let optionHtml;
@@ -23,13 +23,13 @@ $(document).ready(function() {
         }
         container.append(optionHtml);
     }
-
+// Refresh option numbers function
     function refreshOptionNumbers(container) {
         container.find('.option').each(function(index) {
             $(this).find('.option-label').val(`Option ${index + 1}`);
         });
     }
-
+//Form section function
     function createFormSection() {
         let newSection = `
             <div class="form-section" data-index="${index}">
@@ -65,19 +65,11 @@ $(document).ready(function() {
                 left: position.left - buttonWidth - 47 + 'px',
                 top: position.top + activeSection.height() / 2 - buttonHeight / 2 + 'px'
             });
-        } else {
-            let containerPosition = $('#form-container').position();
-            let buttonWidth = $('#add-section-btn').outerWidth();
-            let buttonHeight = $('#add-section-btn').outerHeight();
-
-            $('#add-section-btn').css({
-                position: 'absolute',
-                left: containerPosition.left + 'px',
-                top: containerPosition.top + $('#form-container').height() + 20 + 'px'
-            });
-        }
+        } 
+  
     }
-
+//Event handler is triggered
+// creates a new form section;sets it as active;respositions the add section button
     $('#add-section-btn').on('click', function() {
         createFormSection();
         $('.form-section').removeClass('active');
@@ -85,7 +77,7 @@ $(document).ready(function() {
         activeSection.addClass('active');
         positionAddSectionButton();
     });
-
+// It updates the options container based on the selected type, adding the necessary input fields or buttons.
     $(document).on('change', '.custom-select', function() {
         let type = $(this).val();
         let container = $(this).closest('.form-section').find('.options-container');
@@ -102,14 +94,15 @@ $(document).ready(function() {
             $(this).closest('.form-section').append('<button class="btn btn-secondary add-option-btn">Add Option</button>');
         }
     });
-
+// add option event handler
+// adds a new option to the options container and updates the option numbers
     $(document).on('click', '.add-option-btn', function() {
         let type = $(this).closest('.form-section').find('.custom-select').val();
         let container = $(this).closest('.form-section').find('.options-container');
         addOption(type, container);
         refreshOptionNumbers(container);
     });
-
+// removes the section;updates the active section;repositions add section button
     $(document).on('click', '.delete-section-icon', function() {
         let section = $(this).closest('.form-section');
         let prevSection = section.prev('.form-section');
@@ -129,7 +122,7 @@ $(document).ready(function() {
 
         positionAddSectionButton();
     });
-
+// delele option
     $(document).on('click', '.delete-option-icon', function() {
         let option = $(this).closest('.option');
         let container = option.closest('.options-container');
@@ -166,6 +159,7 @@ $(document).ready(function() {
             previewContent += '</div>';
             let type = $(this).find('.custom-select').val();
             let optionsContainer = $(this).find('.options-container');
+
             if (type === 'multiple-choice') {
                 optionsContainer.find('.option').each(function() {
                     previewContent += `
@@ -197,6 +191,8 @@ $(document).ready(function() {
                 previewContent += dropdownHtml;
             }
             previewContent += '</div>';
+
+            
         });
         previewContent += `
                     <button class="btn btn-success" style = "margin-left: 240px; margin-top: 20px ">Submit</button>
